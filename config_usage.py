@@ -1,6 +1,6 @@
 __author__ = 'wenychan'
 
-from configuration import MyConfiguration
+# from configuration import MyConfiguration
 
 # # initialize configuration
 # config = MyConfiguration()
@@ -22,7 +22,3 @@ from configuration import MyConfiguration
 # print config.get(section='section', option='option') # return specific option's value in specific section if exists
 # print config.get(..., raw=True/False) # set if value is raw
 # print config.get(..., option1='value1', option2=222222) # set values in parser
-
-config = MyConfiguration()
-#config = MyConfiguration(default_options={'aaa':'bbb'})
-print config.aaa

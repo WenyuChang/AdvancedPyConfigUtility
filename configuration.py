@@ -15,7 +15,7 @@ class _FinalMeta(type):
 class MyConfiguration():
     __metaclass__ = _FinalMeta
     #__CONFIG_PATH = '/opt/cisco/etc'
-    __CONFIG_PATH = '.'
+    __CONFIG_PATH = './'
     __DEFAULT_CONFIG_FILE = 'cesium.properties'
 
     def __init__(self, app='', service='', default_options=None, **kwargs):
@@ -34,11 +34,10 @@ class MyConfiguration():
         for key, value in kwargs.items():
             self.__config_vars[key.upper()] = str(value)
 
-        default_cfg_file = '{0}/{1}'.format(MyConfiguration.__CONFIG_PATH, MyConfiguration.__DEFAULT_CONFIG_FILE)
-        config_candidate = [default_cfg_file]
+        config_candidate = [MyConfiguration.__CONFIG_PATH+MyConfiguration.__DEFAULT_CONFIG_FILE]
         if len(self.__app) > 0:
-            app_cfg_file = '{0}/{1}.{2}'.format(MyConfiguration.__CONFIG_PATH, self.__app, MyConfiguration.__DEFAULT_CONFIG_FILE)
-            config_candidate.append(app_cfg_file)
+            cfg_file = '{0}.{1}'.format(MyConfiguration.__CONFIG_PATH+self.__app, MyConfiguration.__DEFAULT_CONFIG_FILE)
+            config_candidate.append(cfg_file)
 
         self.__parser = SafeConfigParser(defaults=self.__default_options, allow_no_value=True)
         found = self.__parser.read(config_candidate)
